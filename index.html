@@ -2,28 +2,59 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <title>Bank Info</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function Account (props)
+      function Nameshow(Param)
       {
-            return <h1>Account No:{props.AccountNo}</h1>;
-        
+        return(
+          <h2>Name: {Param.name}, Age:{Param.age}</h2>
+        )
       }
+
+class Human extends React.Component{
+    render()
+    {
+      return( 
+       <div>
+        <h1>Customer Information</h1>
+        <table></table>
+          <Nameshow name="timu" age="26"/>
+          <Bank Name= "DBBL"/>
+          <Nameshow name="Tonmoy"  age="27"/>
+          <Bank Name= "SIBL"/>
+      </div>
+    )
+  }}
+
+class Bank extends React.Component{
+  constructor(props)
+  {
+    super(props);
+  }
+  render()
+  {
+    var oBank = this.props;
+    return(
+      <h3>Bank Name :{oBank.Name} </h3>
+    )
+  }
+}
 
       ReactDOM.render(
       <div>
-      <h3>Account List </h3>
-        <Account AccountNo="123-6958-6987"/>
-      </div>,
-        document.getElementById('root')
+          <Human />
+          
+        </div>,
+      document.getElementById('root')
       );
-
+     
     </script>
   </body>
 </html>
