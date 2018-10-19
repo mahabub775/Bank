@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Bank Info</title>
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -11,50 +11,87 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function Nameshow(Param)
-      {
-        return(
-          <h2>Name: {Param.name}, Age:{Param.age}</h2>
-        )
-      }
-
-class Human extends React.Component{
-    render()
-    {
-      return( 
-       <div>
-        <h1>Customer Information</h1>
-        <table></table>
-          <Nameshow name="timu" age="26"/>
-          <Bank Name= "DBBL"/>
-          <Nameshow name="Tonmoy"  age="27"/>
-          <Bank Name= "SIBL"/>
-      </div>
-    )
-  }}
 
 class Bank extends React.Component{
+constructor(props)
+{
+  super(props)
+}
+  render()
+  {
+      var oBank = this.props;
+    return(
+      <tbody>
+        <tr>
+          <td>{oBank.Name}</td>
+          <td>{oBank.ShortName}</td>
+          <td>{oBank.SwiftCode}</td>
+        </tr>
+      </tbody>
+
+    )
+  }
+}
+
+
+class BankAccount extends React.Component{
   constructor(props)
   {
     super(props);
   }
   render()
   {
-    var oBank = this.props;
+    var oBankAccount= this.props;
     return(
-      <h3>Bank Name :{oBank.Name} </h3>
+      <tbody>
+        <tr>
+          <td>{oBankAccount.AccTitle}</td>
+          <td>{oBankAccount.BankName}</td>
+          <td>{oBankAccount.AccountNo}</td>
+           <td>{oBankAccount.Balance}</td>
+        </tr>
+      </tbody>
     )
-  }
-}
+  }}
 
-      ReactDOM.render(
-      <div>
-          <Human />
-          
-        </div>,
-      document.getElementById('root')
-      );
-     
+ReactDOM.render( 
+<div>
+<h1> Bank list </h1>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Bank Name</th>
+        <th>Short Name</th>
+        <th>Swift Code</th>
+      </tr>
+    </thead>
+    <Bank Name="Shajalal Islami Bank" ShortName="SIBL" SwiftCode = "SJBLBDDH" />
+    <Bank Name="Dutch Bangla Bank" ShortName="DBBL" SwiftCode = "DBBLBDDH" />
+    <Bank Name="Brac Bank" ShortName="BBL" SwiftCode = "BRAKBDDH" />
+    <Bank Name="Islami Bank" ShortName="IBBL" SwiftCode = "IBBLBDDH" />
+  </table>
+
+<h1> Customer Bank Account list </h1>
+      <table border="1">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Bank Name</th>
+                <th>Account No</th>
+                <th>Balance</th>
+            </tr>
+          </thead>
+           <BankAccount AccTitle="APZ Abul Kalam" BankName= "Shajalal Islami Bank"AccountNo= "1253.3695.2458" Balance = "$500"/>
+           <BankAccount AccTitle="MH.BARI Siddique" BankName= "Dutch Bangla Bank"AccountNo= "123.698.36954" Balance = "$3500"/>
+           <BankAccount AccTitle="Md.Nazrul " BankName= "Brac Bank"AccountNo= "1236.658.3258" Balance = "$8500"/>
+           <BankAccount AccTitle="Md.Karim" BankName= "Islami Bank"AccountNo= "125.369.45854" Balance = "$9500"/>
+           <BankAccount AccTitle="Md.Hellal " BankName= "Islami Bank"AccountNo= "235.6984.5857" Balance = "$12500"/>
+           <BankAccount AccTitle="Md.Robbin Ahmed" BankName= "Islami Bank"AccountNo= "2536.9845.6888" Balance = "$22500"/>
+           <BankAccount AccTitle="Md.Royel Miah" BankName= "Dhaka Bank"AccountNo= "169.369.3658" Balance = "$25000"/>
+           <BankAccount AccTitle="Md.Kalam" BankName= "Standard Chartared Bank"AccountNo= "127.36.69474" Balance = "$2300"/>
+      </table>
+    </div>,
+document.getElementById('root'));
     </script>
   </body>
 </html>
